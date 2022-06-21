@@ -11,5 +11,14 @@
 
 ## Переименовать VG и добавляем модуль
 ### *Приложен файл boot.log* с выводом утилиты script
-
 ![dracut](https://user-images.githubusercontent.com/105001717/174777618-3fcc7568-83ac-4304-90d7-44722dd6f65d.png)
+
+### Commands
+```
+vgrename VolGroup00 OtusRoot
+sed -i s/VolGroup00/OtusRoot/g /etc/fstab
+sed -i s/VolGroup00/OtusRoot/g /etc/default/grub
+sed -i s/VolGroup00/OtusRoot/g /boot/grub2/grub.cfg
+mkinitrd -f -v /boot/initramfs-$(uname -r).img $(uname -r)
+mkdir /usr/lib/dracut/modules.d/01test
+```
